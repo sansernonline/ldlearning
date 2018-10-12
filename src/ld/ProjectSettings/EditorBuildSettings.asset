@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/consonant-menu.unity
+    guid: 00ba4fe2ba19700418da8135fe2e4e0a
+  - enabled: 1
+    path: Assets/Scene/consonant-sound.unity
+    guid: eb305d86a53f6bf40b842496237f1b31
+  - enabled: 1
+    path: Assets/Scene/consonant-sound-test.unity
+    guid: 5d5879938698f2a4fa624ad6a511c97c
+  - enabled: 1
+    path: Assets/Scene/consonant-text.unity
+    guid: 6f27c9d4c93ea7f41972aadc39c93a3d
+  - enabled: 1
+    path: Assets/Scene/consonant-text-menu.unity
+    guid: 8c3d4475bc9680448af24b4d754418a8
+  - enabled: 1
+    path: Assets/Scene/consonant-text-test-1.unity
+    guid: 18890d1c4ae19cd46973ccc823802623
+  - enabled: 1
+    path: Assets/Scene/consonant-text-test-2.unity
+    guid: 4696b94d56506404cb4661f3522f15c0
+  - enabled: 1
+    path: Assets/Scene/consonant-text-test-3.unity
+    guid: 880e2028f663da440af2cf5fb84c4cda
+  - enabled: 1
+    path: Assets/Scene/consonant-text-test-menu.unity
+    guid: bb02e62679e5fcf4b8c31f16c9fd7959
+  - enabled: 1
+    path: Assets/Scene/consonant-write.unity
+    guid: 889d3b4ddf9304742be8c3c3c318db00
+  - enabled: 1
+    path: Assets/Scene/main-game.unity
+    guid: 690ba7ca6dbad3b41977557365fddc69
+  - enabled: 1
+    path: Assets/Scene/main-menu.unity
+    guid: 4fd18c4203182754a8e32467d3bd6c92
+  - enabled: 1
+    path: Assets/Scene/main-profile.unity
+    guid: 2778297c07455f845b6216295aedd99e
+  - enabled: 1
+    path: Assets/Scene/mark-menu.unity
+    guid: 52d38a7f2bf33794d804afaf3e6a2a2e
+  - enabled: 1
+    path: Assets/Scene/sentence-menu.unity
+    guid: fd9946a85c8a567469ee61622cfd3d73
+  - enabled: 1
+    path: Assets/Scene/spelling-menu.unity
+    guid: 6f01d8352abc5044daf52320fb9f4720
+  - enabled: 1
+    path: Assets/Scene/vowel-menu.unity
+    guid: 40c5ffd19eb19f0488e182e4932e917d
+  - enabled: 1
+    path: Assets/Scene/vowel-text.unity
+    guid: 05e7e620aaf12574da256f9211c908dc
+  - enabled: 1
+    path: Assets/Scene/vowel-text-menu.unity
+    guid: fbe27a0c2fa3cba4e93e07fd90d2ec5d
+  - enabled: 1
+    path: Assets/Scene/vowel-text-test-2.unity
+    guid: 7b0f954011d86b74a8a4ed4c189f85cf
