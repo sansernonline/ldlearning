@@ -2992,7 +2992,7 @@ Prefab:
     - target: {fileID: 114732819170513142, guid: 96a54b406163e604e8fc55cad5b83f2a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: consonant-menu
+      value: vowel-menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96a54b406163e604e8fc55cad5b83f2a, type: 2}

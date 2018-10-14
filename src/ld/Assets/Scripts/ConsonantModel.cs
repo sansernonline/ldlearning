@@ -60,7 +60,7 @@ public class ConsonantModel : MonoBehaviour {
         }
     }
 
-    public void LoadControlMenu()
+    private void LoadControlMenu()
     {
         Debug.Log("LoadDataScene");
 

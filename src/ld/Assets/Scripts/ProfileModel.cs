@@ -19,22 +19,42 @@ public class ProfileModel : MonoBehaviour {
         "ผ", "ฝ", "พ", "ฟ", "ภ", "ม", "ย", "ร", "ล",
         "ว", "ศ", "ษ", "ส", "ห", "ฬ", "อ", "ฮ"
     };
+    private static string[] vowelList = new string[32]
+    {
+        "ะ", "า", "ิ", "ี", "ึ", "ื", "ุ", "ู", "เ ะ",
+        "เ", "แ ะ", "แ", "โ ะ", "โ", "เ าะ", "อ", "เ อะ","เ อ",
+        "เียะ", "เีย", "เือะ", "เือ", "ัะ", "ัว", "ำ","ใ", "ไ",
+        "เ า", "ฤ", "ฤๅ", "ฦ", "ฦๅ"};
 
     // Use this for initialization
     void Start () {
-
         if (SceneManager.GetActiveScene().name.Equals("main-menu"))
         {
             loadUserInfo();
             GameObject.Find("textProfile").GetComponent<Text>().text = userFirstName;
-        } else if (SceneManager.GetActiveScene().name.Equals("main-profile"))
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("main-profile"))
         {
             loadUserInfo();
             InputField textField = GameObject.Find("InputFieldName").GetComponent<InputField>();
             textField.text = userFirstName;
+            
+            // get learning consonant
+            LoadLearningStatus(100);
 
-            // get learning status
-            getLearningStatus(100);
+            // get learning vowel
+            LoadLearningStatus(200);
+
+            // get learning spelling
+
+            // get learning mark
+
+            // get learning sentence
+
+        }
+        else
+        {
+            loadUserInfo();
         }
     }
 
@@ -43,8 +63,12 @@ public class ProfileModel : MonoBehaviour {
         //InputField textField = GameObject.Find("InputFieldName").GetComponent<InputField>();
         //string name = textField.text;
 
-        string sql = string.Format("insert into User (Id, FirstName) values ('{0}','{1}')", userId, name);
-        DatabaseConnection.getExecuteScalar(sql);
+        User u = new User
+        {
+            Id = userId,
+            FirstName = name
+        };
+        DatabaseConnection.insertUser(u);
     }
 
     public void updateUser(string name)
@@ -52,45 +76,26 @@ public class ProfileModel : MonoBehaviour {
         //InputField textField = GameObject.Find("InputFieldName").GetComponent<InputField>();
         //string name = textField.text;
 
-        string sql = string.Format("update User set FirstName='{0}' where Id='{1}'", name, userId);
-        DatabaseConnection.getExecuteScalar(sql);
+        User u = DatabaseConnection.findUser(userId);
+        u.FirstName = name;
+        Debug.Log("name : " + name);
+        DatabaseConnection.updateUser(u);
     }
 
     public static void loadUserInfo()
     {
-        // select user from database
-        string sql = "SELECT Id, FirstName FROM User ";
-        List<Dictionary<String, System.Object>> listResult = DatabaseConnection.getExecuteReader(sql);
+        User u = DatabaseConnection.findUser();
         
-        foreach (Dictionary<String, System.Object> map in listResult)
-        {
-            //foreach (KeyValuePair<String, System.Object> item in map)
-            //{
-            //    Debug.Log(String.Format("Key: {0}, Value: {1}", item.Key, item.Value));
-            //}
-
-            userId = map["Id"].ToString();
-            userFirstName = map["FirstName"].ToString();
-        }
-
         // set user id
-        if (userId == null)
+        if (u == null)
         {
             userId = Guid.NewGuid().ToString();
             createUser("");
+        } else
+        {
+            userId = u.Id;
+            userFirstName = u.FirstName;
         }
-
-
-        // get consonant info
-
-
-        // get vowel info
-
-
-        // get spelling info
-
-
-        // get mark info
     }
 
     /**
@@ -100,23 +105,41 @@ public class ProfileModel : MonoBehaviour {
     public static void saveLearningState(int course, int courseDetail, int currentUnit, int learningTime)
     {
         int courseScore = 0;
+        UserCourseScore ucs = null;
 
         switch (course)
         {
-            case 100:
-
+            case 100:    // save consonant data
                 // max score
                 courseScore = 44;// + 15;
-                
-                // get max id
-                int maxId = DatabaseConnection.getMaxId("UserCourseScore");
 
-                string sql = string.Format("insert into UserCourseScore (Id, CourseDetailId, UserId, MyScore, CourseScore, LearningTime, LearningUnit, Status) " +
-                    "values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", maxId, courseDetail, userId, 1, courseScore, learningTime, currentUnit, 1);
-                DatabaseConnection.getExecuteScalar(sql);
-
+                ucs = new UserCourseScore
+                {
+                    CourseDetailId = courseDetail,
+                    UserId = userId,
+                    MyScore = 1,
+                    CourseScore = courseScore,
+                    LearningTime = learningTime,
+                    LearningUnit = currentUnit,
+                    Status = 1
+                };
+                DatabaseConnection.insertUserCourseScore(ucs);
                 break;
-            case 200:
+            case 200:    // save vowel data
+                // max score
+                courseScore = 32;
+
+                ucs = new UserCourseScore
+                {
+                    CourseDetailId = courseDetail,
+                    UserId = userId,
+                    MyScore = 1,
+                    CourseScore = courseScore,
+                    LearningTime = learningTime,
+                    LearningUnit = currentUnit,
+                    Status = 1
+                };
+                DatabaseConnection.insertUserCourseScore(ucs);
                 break;
             case 300:
                 break;
@@ -135,22 +158,43 @@ public class ProfileModel : MonoBehaviour {
     public static void saveExamState(int examCourse, int examCourseDetail, int currentUnit, int learningTime, int answerScore)
     {
         int courseScore = 0;
-        
+        //int maxId = 0;
+        //string sql = "";
+        ExamScore es = null;
+
         switch (examCourse)
         {
             case 100:
                 // max score
                 courseScore = 44;// + 15;
 
-                // get max id
-                int maxId = DatabaseConnection.getMaxId("ExamScore");
-
-                string sql = string.Format("insert into ExamScore (Id, ExamId, UserId, MyScore, CourseScore, LearningTime, LearningUnit, Status) " +
-                    "values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", maxId, examCourseDetail, userId, answerScore, courseScore, learningTime, currentUnit, 1);
-                DatabaseConnection.getExecuteScalar(sql);
-
+                es = new ExamScore
+                {
+                    ExamId = examCourseDetail,
+                    UserId = userId,
+                    MyScore = answerScore,
+                    CourseScore = courseScore,
+                    LearningTime = learningTime,
+                    LearningUnit = currentUnit,
+                    Status = 1
+                };
+                DatabaseConnection.insertExamScore(es);
                 break;
             case 200:
+                // max score
+                courseScore = 32;
+
+                es = new ExamScore
+                {
+                    ExamId = examCourseDetail,
+                    UserId = userId,
+                    MyScore = answerScore,
+                    CourseScore = courseScore,
+                    LearningTime = learningTime,
+                    LearningUnit = currentUnit,
+                    Status = 1
+                };
+                DatabaseConnection.insertExamScore(es);
                 break;
             case 300:
                 break;
@@ -172,57 +216,90 @@ public class ProfileModel : MonoBehaviour {
 
     }
 
-    public void getLearningStatus(int courseGroup)
+    public void LoadLearningStatus(int courseGroup)
     {
-        // lesson
-        string sqlCurrentLesson = "SELECT IFNULL(MAX(LearningUnit),0) as currentUnit FROM UserCourseScore WHERE userId='{0}' AND CourseDetailId='{1}' ";
-        string sqlLessonCount = "SELECT IFNULL(COUNT(distinct LearningUnit),0) as countUnit FROM UserCourseScore WHERE userId='{0}' AND CourseDetailId='{1}' ";
-        string sqlLearningTime = "SELECT IFNULL(SUM(LearningTime),0) as learningTime FROM UserCourseScore WHERE userId='{0}' AND CourseDetailId='{1}' ";
-
-        // exam
-        string sqlPercentErrorUnit = "SELECT IFNULL(COUNT(MyScore),0) AS allExam, IFNULL(sum(MyScore),0) AS correctExam FROM ExamScore WHERE UserId='{0}' AND ExamId='{1}' ";
-
-        // error unit
-        string sqlErrorUnit = "SELECT LearningUnit AS errorUnit, IFNULL(COUNT(MyScore),0) AS wrongCount FROM ExamScore WHERE UserId='{0}' AND ExamId='{1}' AND MyScore=0 GROUP BY LearningUnit ORDER BY wrongCount DESC LIMIT 3 ";
+        int latestLesson = 0;
+        int countLesson = 0;
+        double learningTime = 0;
+        double allExamScore = 0;
+        double correctExamScore = 0;
+        string percent = "";
+        string errorUnits = "";
+        List<ExamScore> es = null;
 
         switch (courseGroup)
         {
             case 100:
                 // calculate lesson
-                List<Dictionary<String, System.Object>> listResult = null;
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlCurrentLesson, userId, "110"));
-                GameObject.Find("consonantTopicResult1").GetComponent<Text>().text = String.Format("บทที่ {0}", listResult[0]["currentUnit"].ToString());
-                
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlLessonCount, userId, "110"));
-                GameObject.Find("consonantTopicResult2").GetComponent<Text>().text = String.Format("{0}/44 บท", listResult[0]["countUnit"].ToString());
-                
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlLearningTime, userId, "110"));
-                double learningTime = Double.Parse(listResult[0]["learningTime"].ToString());
+                latestLesson = DatabaseConnection.getLatestLesson(userId, 110);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlCurrentLesson, userId, "110"));
+                GameObject.Find("consonantTopicResult1").GetComponent<Text>().text = String.Format("บทที่ {0}", latestLesson.ToString());
+
+                countLesson = DatabaseConnection.getCountLesson(userId, 110);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlLessonCount, userId, "110"));
+                GameObject.Find("consonantTopicResult2").GetComponent<Text>().text = String.Format("{0}/44 บท", countLesson.ToString());
+
+                learningTime = DatabaseConnection.getLearningTime(userId, 110);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlLearningTime, userId, "110"));
+                learningTime = Double.Parse(learningTime.ToString());
                 GameObject.Find("consonantTopicResult3").GetComponent<Text>().text = String.Format("{0} ชั่วโมง", ((learningTime / 60) / 60).ToString("0.##"));
-                
+
                 // display percent error
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlPercentErrorUnit, userId, "110"));
-                string percent = "";
-                percent = getPercent(Double.Parse(listResult[0]["allExam"].ToString()), Double.Parse(listResult[0]["correctExam"].ToString()));
+                allExamScore = DatabaseConnection.getExamAllScore(userId, 110);
+                correctExamScore = DatabaseConnection.getExamCorrectScore(userId, 110);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlPercentErrorUnit, userId, "110"));
+                percent = getPercent(allExamScore, correctExamScore);
                 GameObject.Find("consonantTopicPercent4").GetComponent<Text>().text = String.Format("{0}%", percent);
 
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlPercentErrorUnit, userId, "111"));
-                percent = getPercent(Double.Parse(listResult[0]["allExam"].ToString()), Double.Parse(listResult[0]["correctExam"].ToString()));
+                allExamScore = DatabaseConnection.getExamAllScore(userId, 111);
+                correctExamScore = DatabaseConnection.getExamCorrectScore(userId, 111);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlPercentErrorUnit, userId, "111"));
+                percent = getPercent(allExamScore, correctExamScore);
                 GameObject.Find("consonantTopicPercent5").GetComponent<Text>().text = String.Format("{0}%", percent);
-                
+
                 // get most exam error (3 units)
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlErrorUnit, userId, "110"));
-                string errorUnits = "";
-                errorUnits = getErrorUnits(listResult);
+                es = DatabaseConnection.getErrorUnits(userId, 110);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlErrorUnit, userId, "110"));
+                errorUnits = getErrorUnits(es, courseGroup);
                 GameObject.Find("consonantTopicResult4").GetComponent<Text>().text = String.Format("{0}", errorUnits);
-
-                listResult = DatabaseConnection.getExecuteReader(String.Format(sqlErrorUnit, userId, "111"));
-                errorUnits = getErrorUnits(listResult); errorUnits = getErrorUnits(listResult);
+                
+                es = DatabaseConnection.getErrorUnits(userId, 111);
+                //listResult = DatabaseConnection.getExecuteReader(String.Format(sqlErrorUnit, userId, "111"));
+                errorUnits = getErrorUnits(es, courseGroup);
                 GameObject.Find("consonantTopicResult5").GetComponent<Text>().text = String.Format("{0}", errorUnits);
-
                 break;
             case 200:
-                break;
+                // calculate lesson
+                latestLesson = DatabaseConnection.getLatestLesson(userId, 210);
+                GameObject.Find("vowelTopicResult1").GetComponent<Text>().text = String.Format("บทที่ {0}", latestLesson.ToString());
+
+                countLesson = DatabaseConnection.getCountLesson(userId, 210);
+                GameObject.Find("vowelTopicResult2").GetComponent<Text>().text = String.Format("{0}/32 บท", countLesson.ToString());
+
+                learningTime = DatabaseConnection.getLearningTime(userId, 210);
+                learningTime = Double.Parse(learningTime.ToString());
+                GameObject.Find("vowelTopicResult3").GetComponent<Text>().text = String.Format("{0} ชั่วโมง", ((learningTime / 60) / 60).ToString("0.##"));
+                
+                // display percent error
+                allExamScore = DatabaseConnection.getExamAllScore(userId, 211);
+                correctExamScore = DatabaseConnection.getExamCorrectScore(userId, 211);
+                percent = getPercent(allExamScore, correctExamScore);
+                GameObject.Find("vowelTopicPercent4").GetComponent<Text>().text = String.Format("{0}%", percent);
+
+                allExamScore = DatabaseConnection.getExamAllScore(userId, 211);
+                correctExamScore = DatabaseConnection.getExamCorrectScore(userId, 211);
+                percent = getPercent(allExamScore, correctExamScore);
+                GameObject.Find("vowelTopicPercent5").GetComponent<Text>().text = String.Format("{0}%", percent);
+
+                // get most exam error (3 units)
+                es = DatabaseConnection.getErrorUnits(userId, 211);
+                errorUnits = getErrorUnits(es, courseGroup);
+                GameObject.Find("vowelTopicResult4").GetComponent<Text>().text = String.Format("{0}", errorUnits);
+
+                es = DatabaseConnection.getErrorUnits(userId, 211);
+                errorUnits = getErrorUnits(es, courseGroup);
+                GameObject.Find("vowelTopicResult5").GetComponent<Text>().text = String.Format("{0}", errorUnits);
+                 break;
             case 300:
                 break;
             case 400:
@@ -232,20 +309,44 @@ public class ProfileModel : MonoBehaviour {
         }
     }
 
-    private static string getMapConsonantNo(int no)
+    private static double NewMethod()
     {
-        return consonantList[no - 1];
+        return 0;
     }
 
-    private static string getErrorUnits(List<Dictionary<String, System.Object>> listResult)
+    private static string getMapUnitsNo(int no, int courseGroup)
+    {
+        string result = "";
+
+        switch (courseGroup)
+        {
+            case 100:
+                result = consonantList[no - 1];
+                break;
+            case 200:
+                Debug.Log("no : " +no);
+                result = vowelList[no - 1];
+                break;
+            case 300:
+                break;
+            case 400:
+                break;
+            case 500:
+                break;
+        }
+
+        return result;
+    }
+
+    private static string getErrorUnits(List<ExamScore> listResult, int courseGroup)
     {
         string errorUnits = "";
-        foreach (Dictionary<String, System.Object> map in listResult)
+        foreach (ExamScore es in listResult)
         {
             if (!errorUnits.Equals(""))
-                errorUnits += String.Format(", {0}", getMapConsonantNo(Int32.Parse(map["errorUnit"].ToString())));
+                errorUnits += String.Format(", {0}", getMapUnitsNo(es.LearningUnit, courseGroup));
             else
-                errorUnits += String.Format("{0}", getMapConsonantNo(Int32.Parse(map["errorUnit"].ToString())));
+                errorUnits += String.Format("{0}", getMapUnitsNo(es.LearningUnit, courseGroup));
         }
 
         return errorUnits;
@@ -253,7 +354,13 @@ public class ProfileModel : MonoBehaviour {
 
     private static string getPercent(double divisor, double set)
     {
-        return ((set * 100) / divisor).ToString("0.00");
+        string result = "0";
+        if (divisor > 0)
+        {
+            result = ((set * 100) / divisor).ToString("0.00");
+        }
+
+        return result;
     }
 
     public static string getUserId()

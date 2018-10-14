@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/vowel-menu.unity
+- path: Assets/Scene/main-profile.unity
   isLoaded: 1
   isActive: 1

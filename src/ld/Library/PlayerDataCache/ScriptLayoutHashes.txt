@@ -1,25 +1,29 @@
 Android
 PlayerPath?
-C:/Users/JK/Desktop/ldelearning/src/ld/Deploy/ldlearning.apk
+C:/Users/JK/Desktop/ldlearning/src/ld/Deploy/ldlearning.apk
 SceneListBegin?
 Assets/Scene/main-menu.unity
-Assets/Scene/main-profile.unity
-Assets/Scene/main-game.unity
-Assets/Scene/consonant-text-test-menu.unity
-Assets/Scene/consonant-text.unity
-Assets/Scene/consonant-text-test-1.unity
-Assets/Scene/consonant-write.unity
 Assets/Scene/consonant-menu.unity
 Assets/Scene/consonant-sound.unity
 Assets/Scene/consonant-sound-test.unity
+Assets/Scene/consonant-text.unity
 Assets/Scene/consonant-text-menu.unity
+Assets/Scene/consonant-text-test-1.unity
 Assets/Scene/consonant-text-test-2.unity
 Assets/Scene/consonant-text-test-3.unity
-Assets/Scene/vowel-menu.unity
+Assets/Scene/consonant-text-test-menu.unity
+Assets/Scene/consonant-write.unity
+Assets/Scene/main-game.unity
+Assets/Scene/main-profile.unity
 Assets/Scene/mark-menu.unity
 Assets/Scene/sentence-menu.unity
 Assets/Scene/spelling-menu.unity
+Assets/Scene/vowel-menu.unity
+Assets/Scene/vowel-text.unity
+Assets/Scene/vowel-text-menu.unity
+Assets/Scene/vowel-text-test-2.unity
 SceneListEnd?
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.VowelExamModel
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 4b12dd839b2293f8457cd67cc3610b85 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -96,6 +100,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DatabaseConnection
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ConsonantSoundModel
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 4b12dd839b2293f8457cd67cc3610b85 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -133,8 +138,11 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+ba9d967cd3b969e4ab80a34f4ff89675 Assembly-CSharp.dll:.ConsonantWriteModel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ConsonantExamModel
+b66963d0483896ae45063ca62159c827 Assembly-CSharp.dll:.LineDrawer
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
+d04411969c5aee02709c7c6bb9b8e6a4 Assembly-CSharp.dll:.LineCreator
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MenuController
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -169,3 +177,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ConsonantSoundExamModel
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ProfileModel
+b46620f9167f79472b082d7e3ac34260 Assembly-CSharp.dll:.ExistingDBScript
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.VowelModel

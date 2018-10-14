@@ -6,11 +6,6 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
-
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

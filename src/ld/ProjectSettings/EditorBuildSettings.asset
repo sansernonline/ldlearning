@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scene/ExistingDBScript.unity
+    guid: d099e9e4f8372a646b6b135d7db8570f
+  - enabled: 1
+    path: Assets/Scene/main-menu.unity
+    guid: 4fd18c4203182754a8e32467d3bd6c92
   - enabled: 1
     path: Assets/Scene/consonant-menu.unity
     guid: 00ba4fe2ba19700418da8135fe2e4e0a
@@ -38,9 +44,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/main-game.unity
     guid: 690ba7ca6dbad3b41977557365fddc69
-  - enabled: 1
-    path: Assets/Scene/main-menu.unity
-    guid: 4fd18c4203182754a8e32467d3bd6c92
   - enabled: 1
     path: Assets/Scene/main-profile.unity
     guid: 2778297c07455f845b6216295aedd99e

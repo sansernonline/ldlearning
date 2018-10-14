@@ -367,7 +367,7 @@ Prefab:
     - target: {fileID: 114732819170513142, guid: 96a54b406163e604e8fc55cad5b83f2a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: menu-scene
+      value: main-menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96a54b406163e604e8fc55cad5b83f2a, type: 2}
@@ -405,8 +405,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1578243737}
-  - {fileID: 466754713}
   - {fileID: 1248945258}
+  - {fileID: 466754713}
   m_Father: {fileID: 669050246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -673,7 +673,7 @@ RectTransform:
   m_Children:
   - {fileID: 408705103}
   m_Father: {fileID: 616556561}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

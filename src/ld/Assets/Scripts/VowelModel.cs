@@ -22,7 +22,7 @@ public class VowelModel : MonoBehaviour {
         LoadDataScene();
 
         // save learning state
-        ProfileModel.saveLearningState(100, 110, currentVowelNo, 60);
+        ProfileModel.saveLearningState(200, 210, currentVowelNo, 60);
     }
 
     public static void LoadScene(int vowelNo)
@@ -48,7 +48,7 @@ public class VowelModel : MonoBehaviour {
         }
     }
 
-    public void LoadControlMenu()
+    private void LoadControlMenu()
     {
         Debug.Log("LoadDataScene");
 
