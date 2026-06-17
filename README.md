@@ -1,6 +1,6 @@
-# LD E-Learning — แอปฝึกภาษาไทยสำหรับเด็ก LD
+# LD E-Learning — Thai Language Practice App for Children with LD
 
-> เกมการศึกษาบน Unity สำหรับฝึก **พยัญชนะ สระ การออกเสียง การสะกดคำ และการคัดลายมือ** ภาษาไทย ออกแบบเพื่อเด็กที่มีภาวะบกพร่องทางการเรียนรู้ (Learning Disability)
+> A Unity educational game for practicing Thai **consonants, vowels, pronunciation, spelling, and handwriting**, designed for children with a Learning Disability (LD).
 
 ![Unity](https://img.shields.io/badge/Unity-2017.4.6f1-black?logo=unity)
 ![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue)
@@ -9,96 +9,96 @@
 
 ---
 
-## ภาพรวม
+## Overview
 
-**LD E-Learning** เป็นแอปพลิเคชันมือถือเชิงการศึกษาที่พัฒนาด้วย Unity เพื่อช่วยเด็กที่มีภาวะบกพร่องทางการเรียนรู้ (LD) ฝึกทักษะพื้นฐานทางภาษาไทยผ่านบทเรียนแบบโต้ตอบ มีทั้งภาพ เสียง และการฝึกเขียนตามรอย พร้อมระบบแบบทดสอบและเก็บคะแนนของผู้เรียนแบบ local
+**LD E-Learning** is an educational mobile app built with Unity that helps children with a learning disability (LD) practice basic Thai language skills through interactive lessons. It combines images, audio, and trace-to-write practice, with a quiz system and per-learner score tracking stored locally.
 
-เนื้อหาแบ่งเป็นหมวด **พยัญชนะ (Consonant) · สระ (Vowel) · การสะกดคำ (Spelling) · ประโยค (Sentence)** โดยแต่ละหมวดมีโหมดเรียนรู้และโหมดทดสอบ (Exam)
+Content is organized into **Consonant · Vowel · Spelling · Sentence** categories, each with a learning mode and an exam mode.
 
-## คุณสมบัติหลัก (Features)
+## Features
 
-- 🔤 **บทเรียนพยัญชนะ/สระ** — แสดงรูปภาพ ตัวอักษร และเล่นเสียงประกอบของแต่ละตัว
-- ✏️ **ฝึกคัดลายมือ** — ลากเส้นเขียนตามรอยตัวอักษรด้วย `LineRenderer` (scene `consonant-write`)
-- 🔊 **ฝึกการออกเสียง** — โหมด consonant sound พร้อมแบบทดสอบเสียง
-- 📝 **แบบทดสอบ (Exam)** — แยกตามกลุ่มพยัญชนะ/สระ พร้อมเสียง feedback ถูก/ผิด
-- 👤 **โปรไฟล์ผู้เรียน** — บันทึกความคืบหน้าและคะแนนรายบุคคล
-- 💾 **ฐานข้อมูล local (SQLite)** — ทำงานออฟไลน์ได้ ไม่ต้องต่ออินเทอร์เน็ต
+- 🔤 **Consonant / vowel lessons** — shows the image, the letter, and plays the matching audio for each one
+- ✏️ **Handwriting practice** — trace letters by drawing with `LineRenderer` (scene `consonant-write`)
+- 🔊 **Pronunciation practice** — consonant-sound mode with an audio quiz
+- 📝 **Exams** — grouped by consonant/vowel set, with correct/wrong audio feedback
+- 👤 **Learner profile** — saves individual progress and scores
+- 💾 **Local database (SQLite)** — works offline, no internet required
 
-## หน้าจอ / Scenes
+## Scenes
 
-| กลุ่ม | Scenes |
-|------|--------|
-| หลัก | `main-menu`, `main-profile`, `main-game`, `mark-menu` |
-| พยัญชนะ | `consonant-menu`, `consonant-text`, `consonant-sound`, `consonant-write`, `consonant-text-menu`, `consonant-*-test-*` |
-| สระ | `vowel-menu`, `vowel-text`, `vowel-text-menu`, `vowel-text-test-*` |
-| อื่น ๆ | `spelling-menu`, `sentence-menu` |
+| Group | Scenes |
+|-------|--------|
+| Core | `main-menu`, `main-profile`, `main-game`, `mark-menu` |
+| Consonant | `consonant-menu`, `consonant-text`, `consonant-sound`, `consonant-write`, `consonant-text-menu`, `consonant-*-test-*` |
+| Vowel | `vowel-menu`, `vowel-text`, `vowel-text-menu`, `vowel-text-test-*` |
+| Other | `spelling-menu`, `sentence-menu` |
 
-## เทคโนโลยีที่ใช้ (Tech Stack)
+## Tech Stack
 
 - **Engine:** Unity `2017.4.6f1`
-- **ภาษา:** C# (MonoBehaviour)
-- **ฐานข้อมูล:** SQLite ผ่านไลบรารี [`SQLite4Unity3d`](https://github.com/codecoding/SQLite4Unity3d)
-- **แพลตฟอร์มเป้าหมาย:** Android (หลัก) และ iOS
-- **สื่อ:** รูป PNG, เสียง MP3, ฟอนต์ไทย (TTF/OTF)
+- **Language:** C# (MonoBehaviour)
+- **Database:** SQLite via the [`SQLite4Unity3d`](https://github.com/codecoding/SQLite4Unity3d) library
+- **Target platforms:** Android (primary) and iOS
+- **Media:** PNG images, MP3 audio, Thai fonts (TTF/OTF)
 
-## โครงสร้างโปรเจกต์
+## Project Structure
 
 ```
 ldlearning/
-├── src/ld/                    # โปรเจกต์ Unity
+├── src/ld/                    # Unity project
 │   ├── Assets/
-│   │   ├── Scene/             # ฉากทั้งหมดของแอป
-│   │   ├── Scripts/           # โค้ด C# (Model / Controller / Service)
-│   │   ├── Resources/         # รูป/เสียงตัวอักษร + FeedbackSound (correct/wrong)
-│   │   └── StreamingAssets/   # ไฟล์ฐานข้อมูล SQLite (LD, existing.db)
+│   │   ├── Scene/             # all app scenes
+│   │   ├── Scripts/           # C# code (Model / Controller / Service)
+│   │   ├── Resources/         # letter images/audio + FeedbackSound (correct/wrong)
+│   │   └── StreamingAssets/   # SQLite database files (LD, existing.db)
 │   └── ProjectSettings/
-├── sqlite/                    # สคริปต์ schema (MySQL + SQLite) และเครื่องมือ
-├── resource/                  # ไลบรารี SQLite4Unity3d, ฟอนต์, กราฟิก, mockup, GUI
+├── sqlite/                    # schema scripts (MySQL + SQLite) and tools
+├── resource/                  # SQLite4Unity3d library, fonts, graphics, mockups, GUI
 ├── document/                  # storyboard, use case, prototype (Axure), report
 └── README.md
 ```
 
-### สคริปต์สำคัญ
+### Key Scripts
 
-| ไฟล์ | หน้าที่ |
-|------|---------|
-| `MenuController.cs` | จัดการการโหลด scene ของแต่ละบทเรียน/แบบทดสอบ |
-| `ConsonantModel.cs` / `VowelModel.cs` | โหลดรูป ข้อความ และเสียงของตัวอักษรจาก `Resources/` |
-| `*ExamModel.cs` | ตรรกะของแบบทดสอบแต่ละหมวด |
-| `LineDrawer.cs` / `LineCreator.cs` | ระบบลากเส้นเขียนตามรอย |
-| `DataService.cs` / `DatabaseConnection.cs` | จัดการการเชื่อมต่อ SQLite |
-| `ProfileModel.cs` | บันทึกสถานะการเรียนรู้ของผู้ใช้ |
+| File | Responsibility |
+|------|----------------|
+| `MenuController.cs` | handles scene loading for each lesson/exam |
+| `ConsonantModel.cs` / `VowelModel.cs` | load each letter's image, text, and audio from `Resources/` |
+| `*ExamModel.cs` | logic for each category's exam |
+| `LineDrawer.cs` / `LineCreator.cs` | trace-to-write drawing system |
+| `DataService.cs` / `DatabaseConnection.cs` | manage the SQLite connection |
+| `ProfileModel.cs` | save the learner's progress state |
 
-## โครงสร้างฐานข้อมูล (Database)
+## Database
 
-ตารางหลักใน SQLite: `User`, `UserRole`, `Course`, `CourseGroup`, `CourseDetail`, `CourseAssetDetail`, `Exam`, `ExamScore`, `UserCourseScore`
+Main SQLite tables: `User`, `UserRole`, `Course`, `CourseGroup`, `CourseDetail`, `CourseAssetDetail`, `Exam`, `ExamScore`, `UserCourseScore`
 
-> สคริปต์ schema เต็มอยู่ใน `sqlite/LD_ELearning-SQLite.sql` (และเวอร์ชัน MySQL `sqlite/LD_ELearning-MySQL.sql`)
+> The full schema is in `sqlite/LD_ELearning-SQLite.sql` (with a MySQL version in `sqlite/LD_ELearning-MySQL.sql`).
 
-## เริ่มต้นใช้งาน (Getting Started)
+## Getting Started
 
-1. ติดตั้ง **Unity 2017.4.6f1** (แนะนำผ่าน Unity Hub — เป็นเวอร์ชันเก่า ต้องโหลดจาก archive)
-2. เปิดโปรเจกต์จากโฟลเดอร์ `src/ld`
-3. เปิด scene `Assets/Scene/main-menu.unity` แล้วกด Play
-4. ไฟล์ฐานข้อมูลจะถูกคัดลอกจาก `StreamingAssets` ไปยัง `Application.persistentDataPath` อัตโนมัติในครั้งแรกที่รันบนอุปกรณ์
+1. Install **Unity 2017.4.6f1** (via Unity Hub — this is an older version and must be downloaded from the archive)
+2. Open the project from the `src/ld` folder
+3. Open the scene `Assets/Scene/main-menu.unity` and press Play
+4. On first run on a device, the database files are copied automatically from `StreamingAssets` to `Application.persistentDataPath`
 
 ### Build
 
-- ตั้ง Platform เป็น **Android** ใน Build Settings
-- ตรวจสอบว่า scene ที่ต้องการอยู่ใน **Scenes In Build**
+- Set the platform to **Android** in Build Settings
+- Make sure the required scenes are listed in **Scenes In Build**
 
-## เอกสารประกอบ
+## Documentation
 
-โฟลเดอร์ `document/` มีเอกสารออกแบบและรายงาน:
-- `storyboard_ThaiAppforLD.pptx` — สตอรีบอร์ด
-- `usecase.epgz` — แผนภาพ use case
-- `LD E-Learning-prototype.rp` — ต้นแบบ (Axure)
-- `report/report.pptx` — รายงานสรุปโครงงาน
+The `document/` folder contains design documents and a report:
+- `storyboard_ThaiAppforLD.pptx` — storyboard
+- `usecase.epgz` — use case diagram
+- `LD E-Learning-prototype.rp` — prototype (Axure)
+- `report/report.pptx` — project summary report
 
-## หมายเหตุ
+## Notes
 
-โปรเจกต์นี้เป็นต้นแบบ (prototype) เพื่อการศึกษา พัฒนาในปี 2018 บน Unity 2017 ฐานข้อมูลและสื่อทั้งหมดทำงานแบบ local เป็นหลัก
+This is an educational prototype, developed in 2018 on Unity 2017. The database and media run primarily in a local-first manner.
 
 ## License
 
-ยังไม่ได้ระบุ license — หากต้องการเปิดเป็นสาธารณะ แนะนำให้เพิ่มไฟล์ `LICENSE` (เช่น MIT) ให้ชัดเจน
+No license specified yet — if you plan to make it public, it's recommended to add a clear `LICENSE` file (e.g. MIT).
